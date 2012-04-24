@@ -1,16 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[Jared McFarland]]></title>
   <link href="http://jaredonline.github.com/atom.xml" rel="self"/>
   <link href="http://jaredonline.github.com/"/>
-  <updated>2012-04-23T19:16:37-07:00</updated>
+  <updated>2012-04-23T20:01:07-07:00</updated>
   <id>http://jaredonline.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Jared McFarland]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Serving a static website with Heroku]]></title>
+    <link href="http://jaredonline.github.com/blog/2012/03/05/serving-a-static-website-with-heroku/"/>
+    <updated>2012-03-05T19:21:00-08:00</updated>
+    <id>http://jaredonline.github.com/blog/2012/03/05/serving-a-static-website-with-heroku</id>
+    <content type="html"><![CDATA[<p>
+  I recently wanted to setup a very simple static HTML site for
+  a friend’s school project. I didn’t want to go through the
+  hassle of setting up hosting, I just wanted to put it somewhere.
+</p>
+<p>
+  In the past I’ve used Heroku for this, but I’d never setup a
+  static site there.
+</p>
+<p>
+  This is how I did it.
+</p>
+<!-- more -->
+<h2>Stasis</h2>
+<p>
+  I used stasis to generate the content. It’s an extremely awesome
+  static site generator using Ruby and all sorts of templating engines.
+  I opted for HAML and SASS.
+</p>
+<p>
+  My file structure looked something like this:
+</p>
+<pre>root/&#x000A; |&#x000A;  - config.ru&#x000A;  - Procfile&#x000A;  - Gemfile&#x000A;  - controller.rb&#x000A;  - index.html.haml&#x000A;  - layout.html.haml&#x000A;  - sub_dir/&#x000A;  - stylesheets/&#x000A;    |&#x000A;     - style.css.sass&#x000A;  - images/&#x000A;</pre>
+<p>
+  I’ll talk about the config.ru and Procfile later. You can checkout stasis if you
+  want to learn more about it’s structure.
+</p>
+<p>
+  My Gemfile contained the gems necessary for development and deployment, and it looks like this:
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="ss">:rubygems</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;haml&quot;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;sass&quot;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;unicorn&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;rack-contrib&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s2">&quot;heroku&quot;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s2">&quot;foreman&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<h2>Rack</h2>
+<p>The config.ru is to tell Heroku to use Rack to serve the website. It looks like this:</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Static</span><span class="p">,</span>  <span class="ss">:urls</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;/stylesheets&quot;</span><span class="p">,</span> <span class="s2">&quot;/images&quot;</span><span class="o">]</span><span class="p">,</span> <span class="ss">:root</span> <span class="o">=&gt;</span> <span class="s2">&quot;public&quot;</span>
+</span><span class='line'><span class="n">run</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Directory</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">run</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">[</span>
+</span><span class='line'>    <span class="mi">200</span><span class="p">,</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>      <span class="s1">&#39;Content-Type&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;text/html&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;Cache-Control&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;public, max-age=86400&#39;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;public/index.html&#39;</span><span class="p">,</span> <span class="no">File</span><span class="o">::</span><span class="no">RDONLY</span><span class="p">)</span>
+</span><span class='line'>  <span class="o">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  The Rack::Static line tells it to serve the contents of the directories “public/stylesheets”
+  and “public/images” as static content.
+</p>
+<p>
+  The Rack::Directory.new(&#8220;public&#8221;) line tells Rack to look for requests matching the contents of
+  the “public” directory and serve the corresponding files.
+</p>
+<p>
+  The last block, the lambda { |env| block, tells Rack to default to rendering the file found
+  at “public/index.html”. This makes “/” work.
+</p>
+<h2>Foreman</h2>
+<p>Heroku uses Foreman. It uses a Procfile in the current working directory to tell it what processes to start and monitor.</p>
+<p>
+  My Procfile looks like this:
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">unicorn</span> <span class="o">-</span><span class="nb">p</span> <span class="vg">$PORT</span>
+</span></code></pre></td></tr></table></div></figure>
+<h2>Heroku</h2>
+<p>Now to tie it all together. You’ll need to create a new app on Heroku like so:</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku apps:create --stack cedar <span class="o">[</span>NAME OF YOUR APP<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+<p>Then simply</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git push heroku master
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  and you should be working!
+</p>
+]]></content>
+  </entry>
   
 </feed>
