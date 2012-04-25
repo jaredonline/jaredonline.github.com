@@ -2,6 +2,18 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>
+            http://jaredonline.github.com/blog/2009/06/27/installing-imagemagick-on-snowleopard-10-dot-6/
+        </loc>
+        <lastmod>2012-04-24T18:23:24-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jaredonline.github.com/blog/2009/12/05/full-stack-ruby-on-rails-development-for-snow-leopard/
+        </loc>
+        <lastmod>2012-04-24T18:14:11-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
             http://jaredonline.github.com/blog/2012/03/05/serving-a-static-website-with-heroku/
         </loc>
         <lastmod>2012-04-23T19:46:39-07:00</lastmod>
@@ -12,14 +24,14 @@
     </url>
     <url>
         <loc>http://jaredonline.github.com/about/</loc>
-        <lastmod>2012-04-24T17:49:41-07:00</lastmod>
+        <lastmod>2012-04-24T18:25:11-07:00</lastmod>
     </url>
     <url>
         <loc>http://jaredonline.github.com/blog/archives/</loc>
-        <lastmod>2012-04-23T19:46:39-07:00</lastmod>
+        <lastmod>2012-04-24T18:23:24-07:00</lastmod>
     </url>
     <url>
         <loc>http://jaredonline.github.com/</loc>
-        <lastmod>2012-04-23T19:46:39-07:00</lastmod>
+        <lastmod>2012-04-24T18:23:24-07:00</lastmod>
     </url>
 </urlset>

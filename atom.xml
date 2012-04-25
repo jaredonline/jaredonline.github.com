@@ -4,7 +4,7 @@
   <title><![CDATA[Jared McFarland]]></title>
   <link href="http://jaredonline.github.com/atom.xml" rel="self"/>
   <link href="http://jaredonline.github.com/"/>
-  <updated>2012-04-24T17:49:41-07:00</updated>
+  <updated>2012-04-24T18:25:12-07:00</updated>
   <id>http://jaredonline.github.com/</id>
   <author>
     <name><![CDATA[Jared McFarland]]></name>
@@ -133,6 +133,250 @@
 </span></code></pre></td></tr></table></div></figure>
 <p>
   and you should be working!
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Full Stack Ruby on Rails Development for Snow Leopard]]></title>
+    <link href="http://jaredonline.github.com/blog/2009/12/05/full-stack-ruby-on-rails-development-for-snow-leopard/"/>
+    <updated>2009-12-05T18:00:00-08:00</updated>
+    <id>http://jaredonline.github.com/blog/2009/12/05/full-stack-ruby-on-rails-development-for-snow-leopard</id>
+    <content type="html"><![CDATA[<p>
+  This blog is gonna talk about setting up Ruby, RubyGems, SVN, Git, Rails and MySQL for Snow Leopard.
+  There&#8217;s a few other articles that go really in depth with setting up custom server configurations
+  for Snow Leopard, but I found them to be doing more than I need for my personal development
+  (
+  <a href='http://www.metaskills.net/2009/9/5/the-ultimate-os-x-snow-leopard-stack-for-rails-development-x86_64-macports-ruby-1-8-1-9-sql-server-more'>here</a>
+  ).
+</p>
+<p>
+  In order to get started you&#8217;ll have to have Snow Leopard installed, along with XCode
+  (which includes X11).  If you don&#8217;t install XCode you&#8217;ll get an error trying to
+  install things with MacPorts.
+</p>
+<p>
+  <strong>
+    Disclaimer:
+  </strong>
+  This setup worked for me twice, once on a MBP and once on a 27&#8221; iMac i5.  I can&#8217;t guarantee
+  it&#8217;ll work for you.  If you run into issues, feel free to leave a comment, but I can&#8217;t
+  promise I&#8217;ll know the answer.
+</p>
+<p>
+  I&#8217;ve setup two different Snow Leopard computers in the past couple days to do this, and
+  I&#8217;ve compiled some notes on what worked for me.
+</p>
+<!-- more -->
+<p>
+  To start off, install
+  <a href='http://www.macports.org/install.php'>MacPorts j</a>
+  following their
+  <a href='http://guide.macports.org/'>instructions.</a>
+</p>
+<p>
+  If you&#8217;re like me, you use Bash as your default shell, so add this
+  to your
+  <code>~/.profile</code>
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/bin:$PATH&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">MANPATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/share/man:$MANPATH&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">INFOPATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/share/info:$INFOPATH&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  Chances are, if you&#8217;re using Snow Leopard, you&#8217;re running 64-bit apps and you have a chip that supports
+  64-bit architecture.  If it does, you can force MacPorts to install apps with 64-bit architecture.
+  Open up
+  <code>/opt/local/etc/macports/macports.conf</code>
+  And change the &#8220;build_arch&#8221; setting (around line 59) to
+  <code>x86_64.</code>
+</p>
+<p>
+  Once that&#8217;s done, you&#8217;re ready to install Ruby.
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo port install ruby
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  It&#8217;ll take awhile, so go grab a cup of coffee or something while you wait.  Once that&#8217;s done, running
+  <code>which ruby</code>
+  should show
+  <code>/opt/local/bin/ruby</code>
+</p>
+<p>
+  And running
+  <code>ruby -v</code>
+  should show
+  <code>ruby 1.8.7 (2009-06-12 patchlevel 174) [i686-darwin10]</code>
+</p>
+<p>
+  Next step is rubygems
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo port install rb-rubygems
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  After that is SVN and Git
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo port install subversion
+</span><span class='line'>sudo port install git-core +svn
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  Next up is MySQL.  At the time of writing this, no package for Mac OS 10.6 has been released.  So
+  download the 10.5 x86_64 package from
+  <a href='http://dev.mysql.com/downloads/mysql/5.1.html#macosx-dmg'>here</a>
+  .
+</p>
+<p>
+  Install both packages and the PrefPane (for some reason the pref pane is still 32-bit so it&#8217;ll
+  ask you to restart System Preferences every time you use it).
+</p>
+<p>
+  In order to access MySQL from the command line, add this to your
+  <code>~/.profile</code>
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  Then run the following in order to refresh your shell.
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/.profile
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  After installing Rails, you need to install the MySQL adapter gem:
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo env <span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">&quot;-arch x86_64&quot;</span> gem install mysql -- --with-mysql-config<span class="o">=</span>/usr/local/mysql/bin/mysql_config
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  That particular command will tell it to instal the x86_64 version of the gem, and points it to your mysql config files.
+</p>
+<p>
+  Lastly, install Rails. This will install about 8 different gems, and take a few minutes.
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo gem install rails
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  Afterwards, you can test this all by running:
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rails testapp -d mysql
+</span><span class='line'><span class="nb">cd </span>testapp
+</span><span class='line'>rake db:create:all
+</span><span class='line'>./script/server
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  And browse to
+  <a href='http://localhost:3000'>http://localhost:3000</a>
+  .
+</p>
+<p>
+  <strong>
+    Bonus:
+  </strong>
+  If you&#8217;re using
+  <code>sqlite3</code>
+  , then run this command to get it to install.
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo gem install sqlite3-ruby
+</span></code></pre></td></tr></table></div></figure>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Installing ImageMagick on SnowLeopard 10.6]]></title>
+    <link href="http://jaredonline.github.com/blog/2009/06/27/installing-imagemagick-on-snowleopard-10-dot-6/"/>
+    <updated>2009-06-27T18:16:00-07:00</updated>
+    <id>http://jaredonline.github.com/blog/2009/06/27/installing-imagemagick-on-snowleopard-10-dot-6</id>
+    <content type="html"><![CDATA[<p>
+  <strong>Update:</strong>
+  You can install it a lot easier by following these
+  <a href='http://github.com/masterkain/ImageMagick-sl'>instructions.</a>
+</p>
+<p>
+  When I installed Snow Leopard on my laptop I did a clean install, so my working
+  environment on my laptop was totally wiped out.  I had to reinstall
+  ImageMagick the other day ( you can imagine my frustration when I was getting
+  ImageMagick related errors thinking it was already installed properly).
+  The installation was a bit tricky, so I figured I&#8217;d share it with ya&#8217;ll.
+</p>
+<p>
+  Here&#8217;s how I did it.
+</p>
+<!-- more -->
+<p>
+  First, go to the
+  <a href='http://www.macports.org/'>MacPorts</a>
+  site and follow their download/install instructions for OS 10.5 Leopard.
+  This install went smoothly for me.
+</p>
+<p>
+  Next, open up Terminal.app and run
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo port install ImageMagick
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  This will take quite awhile, as MacPorts will download and install all of the
+  ImageMagick dependencies.  However, when I ran the install, it didn&#8217;t
+  actually download and install ImageMagick.
+</p>
+<p>
+  To get ImageMagick installed and running, go to the ImageMagick download page and
+  grab the Mac OS X Universal Binary.  Unzip it and you&#8217;ll have a working copy
+  of ImageMagick inside that folder (the folder will be called something like ImageMagick-6.5.3).
+</p>
+<p>
+  Now, go back to the Terminal, and move the ImageMagick folder to a permanent
+  home (probably not good for it to sit in your Downloads folder or on your Desktop).
+  I moved my copy to
+  <code>/usr/bin/</code>
+  and renamed the folder from
+  <code>ImageMagick-6.5.3</code>
+  to
+  <code>imagemagick</code>
+  so my full path is
+  <code>/usr/bin/imagemagick</code>
+  .
+</p>
+<p>
+  Lastly, still in Terminal open up your
+  <code>.bash_profile</code>
+  or
+  <code>.profile file</code>
+  (found in your home directory; mine is
+  <code>~/.bash_profile</code>
+  ), and add the following lines to it:
+</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">MAGICK_HOME</span><span class="o">=</span><span class="s2">&quot;/usr/bin/imagemagick&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$MAGICK_HOME</span>/bin:<span class="nv">$PATH</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">&quot;$MAGICK_HOME/lib&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+<p>
+  <strong>
+    Note:
+  </strong>
+  If you moved your ImageMagick directory to a different spot in step 4, then the variable
+  <code>MAGICK_HOME</code>
+  will need to be assigned the proper value.
+</p>
+<p>
+  Restart Terminal and you should be set to jet with ImageMagick in Snow Leopard [=
 </p>
 ]]></content>
   </entry>
