@@ -1,0 +1,85 @@
+---
+layout: post
+title: "Installing ImageMagick on SnowLeopard 10.6"
+date: 2009-06-27 18:16
+comments: true
+categories: 
+---
+
+%p
+  %strong Update: 
+  You can install it a lot easier by following these 
+  %a{ :href => "http://github.com/masterkain/ImageMagick-sl" } instructions.
+
+%p
+  When I installed Snow Leopard on my laptop I did a clean install, so my working 
+  environment on my laptop was totally wiped out.  I had to reinstall 
+  ImageMagick the other day ( you can imagine my frustration when I was getting 
+  ImageMagick related errors thinking it was already installed properly).  
+  The installation was a bit tricky, so I figured I'd share it with ya'll.
+
+%p
+  Here's how I did it.
+
+/ more
+
+%p
+  First, go to the 
+  %a{ :href => "http://www.macports.org/" } MacPorts 
+  site and follow their download/install instructions for OS 10.5 Leopard.  
+  This install went smoothly for me.
+
+%p
+  Next, open up Terminal.app and run
+
+```sh 
+sudo port install ImageMagick  
+```
+
+%p
+  This will take quite awhile, as MacPorts will download and install all of the 
+  ImageMagick dependencies.  However, when I ran the install, it didn't 
+  actually download and install ImageMagick.
+
+%p
+  To get ImageMagick installed and running, go to the ImageMagick download page and 
+  grab the Mac OS X Universal Binary.  Unzip it and you'll have a working copy 
+  of ImageMagick inside that folder (the folder will be called something like ImageMagick-6.5.3).  
+
+%p
+  Now, go back to the Terminal, and move the ImageMagick folder to a permanent 
+  home (probably not good for it to sit in your Downloads folder or on your Desktop).  
+  I moved my copy to 
+  %code /usr/bin/ 
+  and renamed the folder from 
+  %code ImageMagick-6.5.3 
+  to 
+  %code imagemagick 
+  so my full path is 
+  %code /usr/bin/imagemagick
+  = "."
+  
+%p
+  Lastly, still in Terminal open up your 
+  %code .bash_profile 
+  or 
+  %code .profile file 
+  (found in your home directory; mine is 
+  %code ~/.bash_profile
+  ), and add the following lines to it:
+  
+```sh
+export MAGICK_HOME="/usr/bin/imagemagick"
+export PATH=$MAGICK_HOME/bin:$PATH
+export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
+```
+
+%p
+  %strong
+    Note: 
+  If you moved your ImageMagick directory to a different spot in step 4, then the variable 
+  %code MAGICK_HOME 
+  will need to be assigned the proper value.
+
+%p
+  Restart Terminal and you should be set to jet with ImageMagick in Snow Leopard [=

@@ -1,0 +1,160 @@
+---
+layout: post
+title: "Full Stack Ruby on Rails Development for Snow Leopard"
+date: 2009-12-05 18:00
+comments: true
+categories: 
+---
+
+%p
+  This blog is gonna talk about setting up Ruby, RubyGems, SVN, Git, Rails and MySQL for Snow Leopard.  
+  There's a few other articles that go really in depth with setting up custom server configurations 
+  for Snow Leopard, but I found them to be doing more than I need for my personal development 
+  ( 
+  %a{ :href => "http://www.metaskills.net/2009/9/5/the-ultimate-os-x-snow-leopard-stack-for-rails-development-x86_64-macports-ruby-1-8-1-9-sql-server-more" } here
+  ). 
+
+%p
+  In order to get started you'll have to have Snow Leopard installed, along with XCode 
+  (which includes X11).  If you don't install XCode you'll get an error trying to 
+  install things with MacPorts.
+
+%p
+  %strong
+    Disclaimer: 
+  This setup worked for me twice, once on a MBP and once on a 27" iMac i5.  I can't guarantee 
+  it'll work for you.  If you run into issues, feel free to leave a comment, but I can't 
+  promise I'll know the answer.
+  
+%p
+  I've setup two different Snow Leopard computers in the past couple days to do this, and 
+  I've compiled some notes on what worked for me.
+
+/ more
+
+%p
+  To start off, install 
+  %a{ :href => "http://www.macports.org/install.php" } MacPorts j
+  following their 
+  %a{ :href => "http://guide.macports.org/" } instructions.
+
+%p
+  If you're like me, you use Bash as your default shell, so add this 
+  to your 
+  %code ~/.profile 
+
+```sh
+export PATH="/usr/local/bin:$PATH" 
+export MANPATH="/usr/local/share/man:$MANPATH" 
+export INFOPATH="/usr/local/share/info:$INFOPATH"
+```
+
+%p
+  Chances are, if you're using Snow Leopard, you're running 64-bit apps and you have a chip that supports 
+  64-bit architecture.  If it does, you can force MacPorts to install apps with 64-bit architecture.  
+  Open up 
+  %code /opt/local/etc/macports/macports.conf 
+  And change the "build_arch" setting (around line 59) to 
+  %code x86_64.
+
+%p
+  Once that's done, you're ready to install Ruby.
+
+```sh
+sudo port install ruby
+```
+
+%p
+  It'll take awhile, so go grab a cup of coffee or something while you wait.  Once that's done, running 
+  %code which ruby
+  should show 
+  %code /opt/local/bin/ruby
+
+%p 
+  And running 
+  %code ruby -v
+  should show
+  %code ruby 1.8.7 (2009-06-12 patchlevel 174) [i686-darwin10]
+
+%p
+  Next step is rubygems
+
+```sh
+sudo port install rb-rubygems
+```
+
+%p
+  After that is SVN and Git
+
+```sh
+sudo port install subversion
+sudo port install git-core +svn
+```
+
+%p
+  Next up is MySQL.  At the time of writing this, no package for Mac OS 10.6 has been released.  So 
+  download the 10.5 x86_64 package from 
+  %a{ :href => "http://dev.mysql.com/downloads/mysql/5.1.html#macosx-dmg" } here 
+  = "."  
+
+%p
+  Install both packages and the PrefPane (for some reason the pref pane is still 32-bit so it'll 
+  ask you to restart System Preferences every time you use it).
+
+%p
+  In order to access MySQL from the command line, add this to your 
+  %code ~/.profile
+
+```sh
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+```
+
+%p
+  Then run the following in order to refresh your shell.
+
+```sh
+source ~/.profile
+```
+
+%p
+  After installing Rails, you need to install the MySQL adapter gem: 
+
+```sh
+sudo env ARCHFLAGS="-arch x86_64" gem install mysql -- --with-mysql-config=/usr/local/mysql/bin/mysql_config
+```
+
+%p
+  That particular command will tell it to instal the x86_64 version of the gem, and points it to your mysql config files.
+
+%p
+  Lastly, install Rails. This will install about 8 different gems, and take a few minutes.
+
+```sh  
+sudo gem install rails
+```  
+
+%p
+  Afterwards, you can test this all by running:
+
+```sh
+rails testapp -d mysql
+cd testapp
+rake db:create:all
+./script/server
+```
+
+%p
+  And browse to
+  %a{ :href => "http://localhost:3000" } http://localhost:3000
+  = "."
+
+%p
+  %strong 
+    Bonus: 
+  If you're using 
+  %code sqlite3
+  , then run this command to get it to install.
+
+```sh
+sudo gem install sqlite3-ruby
+```
