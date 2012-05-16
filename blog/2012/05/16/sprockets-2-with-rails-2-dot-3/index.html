@@ -1,24 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Jared McFarland]]></title>
-  <link href="http://jaredonline.github.com/atom.xml" rel="self"/>
-  <link href="http://jaredonline.github.com/"/>
-  <updated>2012-05-16T15:33:51-07:00</updated>
-  <id>http://jaredonline.github.com/</id>
-  <author>
-    <name><![CDATA[Jared McFarland]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Sprockets 2 with Rails 2.3 - Jared McFarland</title>
+  <meta name="author" content="Jared McFarland">
 
   
-  <entry>
-    <title type="html"><![CDATA[Sprockets 2 with Rails 2.3]]></title>
-    <link href="http://jaredonline.github.com/blog/2012/05/16/sprockets-2-with-rails-2-dot-3/"/>
-    <updated>2012-05-16T10:33:00-07:00</updated>
-    <id>http://jaredonline.github.com/blog/2012/05/16/sprockets-2-with-rails-2-dot-3</id>
-    <content type="html"><![CDATA[<p>
+  <meta name="description" content="At FutureAdvisor our main app is still in Rails 2.3, mainly because upgrading to Rails 3 is kind of a pain. I generally keep a few side projects &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jaredonline.github.com/blog/2012/05/16/sprockets-2-with-rails-2-dot-3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Jared McFarland" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-7432948-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Jared McFarland</a></h1>
+  
+    <h2>The musings of a 20-something engineer</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation">
+  
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Sprockets 2 With Rails 2.3</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-16T10:33:00-07:00" pubdate data-updated="true">May 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>
   At
   <a href='http://www.futureadvisor.com'>FutureAdvisor</a>
   our main app is still in Rails 2.3, mainly because
@@ -525,375 +600,105 @@
 <p>
   That&#8217;s it! You should now be ready to use Sprockets with Rails 2.3.
 </p>
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[Serving a static website with Heroku]]></title>
-    <link href="http://jaredonline.github.com/blog/2012/03/05/serving-a-static-website-with-heroku/"/>
-    <updated>2012-03-05T19:21:00-08:00</updated>
-    <id>http://jaredonline.github.com/blog/2012/03/05/serving-a-static-website-with-heroku</id>
-    <content type="html"><![CDATA[<p>
-  I recently wanted to setup a very simple static HTML site for
-  a friend’s school project. I didn’t want to go through the
-  hassle of setting up hosting, I just wanted to put it somewhere.
-</p>
-<p>
-  In the past I’ve used Heroku for this, but I’d never setup a
-  static site there.
-</p>
-<p>
-  This is how I did it.
-</p>
-<!-- more -->
-<h2>Stasis</h2>
-<p>
-  I used stasis to generate the content. It’s an extremely awesome
-  static site generator using Ruby and all sorts of templating engines.
-  I opted for HAML and SASS.
-</p>
-<p>
-  My file structure looked something like this:
-</p>
-<pre>root/&#x000A; |&#x000A;  - config.ru&#x000A;  - Procfile&#x000A;  - Gemfile&#x000A;  - controller.rb&#x000A;  - index.html.haml&#x000A;  - layout.html.haml&#x000A;  - sub_dir/&#x000A;  - stylesheets/&#x000A;    |&#x000A;     - style.css.sass&#x000A;  - images/&#x000A;</pre>
-<p>
-  I’ll talk about the config.ru and Procfile later. You can checkout stasis if you
-  want to learn more about it’s structure.
-</p>
-<p>
-  My Gemfile contained the gems necessary for development and deployment, and it looks like this:
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="ss">:rubygems</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;haml&quot;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;sass&quot;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;unicorn&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;rack-contrib&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s2">&quot;heroku&quot;</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s2">&quot;foreman&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-<h2>Rack</h2>
-<p>The config.ru is to tell Heroku to use Rack to serve the website. It looks like this:</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Static</span><span class="p">,</span>  <span class="ss">:urls</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;/stylesheets&quot;</span><span class="p">,</span> <span class="s2">&quot;/images&quot;</span><span class="o">]</span><span class="p">,</span> <span class="ss">:root</span> <span class="o">=&gt;</span> <span class="s2">&quot;public&quot;</span>
-</span><span class='line'><span class="n">run</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Directory</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">run</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span>
-</span><span class='line'>  <span class="o">[</span>
-</span><span class='line'>    <span class="mi">200</span><span class="p">,</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>      <span class="s1">&#39;Content-Type&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;text/html&#39;</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;Cache-Control&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;public, max-age=86400&#39;</span>
-</span><span class='line'>    <span class="p">},</span>
-</span><span class='line'>    <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;public/index.html&#39;</span><span class="p">,</span> <span class="no">File</span><span class="o">::</span><span class="no">RDONLY</span><span class="p">)</span>
-</span><span class='line'>  <span class="o">]</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  The Rack::Static line tells it to serve the contents of the directories “public/stylesheets”
-  and “public/images” as static content.
-</p>
-<p>
-  The Rack::Directory.new(&#8220;public&#8221;) line tells Rack to look for requests matching the contents of
-  the “public” directory and serve the corresponding files.
-</p>
-<p>
-  The last block, the lambda { |env| block, tells Rack to default to rendering the file found
-  at “public/index.html”. This makes “/” work.
-</p>
-<h2>Foreman</h2>
-<p>Heroku uses Foreman. It uses a Procfile in the current working directory to tell it what processes to start and monitor.</p>
-<p>
-  My Procfile looks like this:
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">web</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">unicorn</span> <span class="o">-</span><span class="nb">p</span> <span class="vg">$PORT</span>
-</span></code></pre></td></tr></table></div></figure>
-<h2>Heroku</h2>
-<p>Now to tie it all together. You’ll need to create a new app on Heroku like so:</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku apps:create --stack cedar <span class="o">[</span>NAME OF YOUR APP<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-<p>Then simply</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git push heroku master
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  and you should be working!
-</p>
-]]></content>
-  </entry>
+
+<span class="byline author vcard">Posted by <span class="fn"><a href="/about" title="About the author (Jared McFarland)" rel="author">Jared McFarland</a></span></span>
+
+      
+
+
+
+
+
+
+
+
   
-  <entry>
-    <title type="html"><![CDATA[Full Stack Ruby on Rails Development for Snow Leopard]]></title>
-    <link href="http://jaredonline.github.com/blog/2009/12/05/full-stack-ruby-on-rails-development-for-snow-leopard/"/>
-    <updated>2009-12-05T18:00:00-08:00</updated>
-    <id>http://jaredonline.github.com/blog/2009/12/05/full-stack-ruby-on-rails-development-for-snow-leopard</id>
-    <content type="html"><![CDATA[<p>
-  This blog is gonna talk about setting up Ruby, RubyGems, SVN, Git, Rails and MySQL for Snow Leopard.
-  There&#8217;s a few other articles that go really in depth with setting up custom server configurations
-  for Snow Leopard, but I found them to be doing more than I need for my personal development
-  (
-  <a href='http://www.metaskills.net/2009/9/5/the-ultimate-os-x-snow-leopard-stack-for-rails-development-x86_64-macports-ruby-1-8-1-9-sql-server-more'>here</a>
-  ).
-</p>
-<p>
-  In order to get started you&#8217;ll have to have Snow Leopard installed, along with XCode
-  (which includes X11).  If you don&#8217;t install XCode you&#8217;ll get an error trying to
-  install things with MacPorts.
-</p>
-<p>
-  <strong>
-    Disclaimer:
-  </strong>
-  This setup worked for me twice, once on a MBP and once on a 27&#8221; iMac i5.  I can&#8217;t guarantee
-  it&#8217;ll work for you.  If you run into issues, feel free to leave a comment, but I can&#8217;t
-  promise I&#8217;ll know the answer.
-</p>
-<p>
-  I&#8217;ve setup two different Snow Leopard computers in the past couple days to do this, and
-  I&#8217;ve compiled some notes on what worked for me.
-</p>
-<!-- more -->
-<p>
-  To start off, install
-  <a href='http://www.macports.org/install.php'>MacPorts j</a>
-  following their
-  <a href='http://guide.macports.org/'>instructions.</a>
-</p>
-<p>
-  If you&#8217;re like me, you use Bash as your default shell, so add this
-  to your
-  <code>~/.profile</code>
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/bin:$PATH&quot;</span>
-</span><span class='line'><span class="nb">export </span><span class="nv">MANPATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/share/man:$MANPATH&quot;</span>
-</span><span class='line'><span class="nb">export </span><span class="nv">INFOPATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/share/info:$INFOPATH&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  Chances are, if you&#8217;re using Snow Leopard, you&#8217;re running 64-bit apps and you have a chip that supports
-  64-bit architecture.  If it does, you can force MacPorts to install apps with 64-bit architecture.
-  Open up
-  <code>/opt/local/etc/macports/macports.conf</code>
-  And change the &#8220;build_arch&#8221; setting (around line 59) to
-  <code>x86_64.</code>
-</p>
-<p>
-  Once that&#8217;s done, you&#8217;re ready to install Ruby.
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo port install ruby
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  It&#8217;ll take awhile, so go grab a cup of coffee or something while you wait.  Once that&#8217;s done, running
-  <code>which ruby</code>
-  should show
-  <code>/opt/local/bin/ruby</code>
-</p>
-<p>
-  And running
-  <code>ruby -v</code>
-  should show
-  <code>ruby 1.8.7 (2009-06-12 patchlevel 174) [i686-darwin10]</code>
-</p>
-<p>
-  Next step is rubygems
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo port install rb-rubygems
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  After that is SVN and Git
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo port install subversion
-</span><span class='line'>sudo port install git-core +svn
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  Next up is MySQL.  At the time of writing this, no package for Mac OS 10.6 has been released.  So
-  download the 10.5 x86_64 package from
-  <a href='http://dev.mysql.com/downloads/mysql/5.1.html#macosx-dmg'>here</a>
-  .
-</p>
-<p>
-  Install both packages and the PrefPane (for some reason the pref pane is still 32-bit so it&#8217;ll
-  ask you to restart System Preferences every time you use it).
-</p>
-<p>
-  In order to access MySQL from the command line, add this to your
-  <code>~/.profile</code>
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  Then run the following in order to refresh your shell.
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/.profile
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  After installing Rails, you need to install the MySQL adapter gem:
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo env <span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">&quot;-arch x86_64&quot;</span> gem install mysql -- --with-mysql-config<span class="o">=</span>/usr/local/mysql/bin/mysql_config
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  That particular command will tell it to instal the x86_64 version of the gem, and points it to your mysql config files.
-</p>
-<p>
-  Lastly, install Rails. This will install about 8 different gems, and take a few minutes.
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo gem install rails
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  Afterwards, you can test this all by running:
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rails testapp -d mysql
-</span><span class='line'><span class="nb">cd </span>testapp
-</span><span class='line'>rake db:create:all
-</span><span class='line'>./script/server
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  And browse to
-  <a href='http://localhost:3000'>http://localhost:3000</a>
-  .
-</p>
-<p>
-  <strong>
-    Bonus:
-  </strong>
-  If you&#8217;re using
-  <code>sqlite3</code>
-  , then run this command to get it to install.
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo gem install sqlite3-ruby
-</span></code></pre></td></tr></table></div></figure>
-]]></content>
-  </entry>
+
+
+<time datetime="2012-05-16T10:33:00-07:00" pubdate data-updated="true">May 16<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
   
-  <entry>
-    <title type="html"><![CDATA[Installing ImageMagick on SnowLeopard 10.6]]></title>
-    <link href="http://jaredonline.github.com/blog/2009/06/27/installing-imagemagick-on-snowleopard-10-dot-6/"/>
-    <updated>2009-06-27T18:16:00-07:00</updated>
-    <id>http://jaredonline.github.com/blog/2009/06/27/installing-imagemagick-on-snowleopard-10-dot-6</id>
-    <content type="html"><![CDATA[<p>
-  <strong>Update:</strong>
-  You can install it a lot easier by following these
-  <a href='http://github.com/masterkain/ImageMagick-sl'>instructions.</a>
-</p>
-<p>
-  When I installed Snow Leopard on my laptop I did a clean install, so my working
-  environment on my laptop was totally wiped out.  I had to reinstall
-  ImageMagick the other day ( you can imagine my frustration when I was getting
-  ImageMagick related errors thinking it was already installed properly).
-  The installation was a bit tricky, so I figured I&#8217;d share it with ya&#8217;ll.
-</p>
-<p>
-  Here&#8217;s how I did it.
-</p>
-<!-- more -->
-<p>
-  First, go to the
-  <a href='http://www.macports.org/'>MacPorts</a>
-  site and follow their download/install instructions for OS 10.5 Leopard.
-  This install went smoothly for me.
-</p>
-<p>
-  Next, open up Terminal.app and run
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo port install ImageMagick
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  This will take quite awhile, as MacPorts will download and install all of the
-  ImageMagick dependencies.  However, when I ran the install, it didn&#8217;t
-  actually download and install ImageMagick.
-</p>
-<p>
-  To get ImageMagick installed and running, go to the ImageMagick download page and
-  grab the Mac OS X Universal Binary.  Unzip it and you&#8217;ll have a working copy
-  of ImageMagick inside that folder (the folder will be called something like ImageMagick-6.5.3).
-</p>
-<p>
-  Now, go back to the Terminal, and move the ImageMagick folder to a permanent
-  home (probably not good for it to sit in your Downloads folder or on your Desktop).
-  I moved my copy to
-  <code>/usr/bin/</code>
-  and renamed the folder from
-  <code>ImageMagick-6.5.3</code>
-  to
-  <code>imagemagick</code>
-  so my full path is
-  <code>/usr/bin/imagemagick</code>
-  .
-</p>
-<p>
-  Lastly, still in Terminal open up your
-  <code>.bash_profile</code>
-  or
-  <code>.profile file</code>
-  (found in your home directory; mine is
-  <code>~/.bash_profile</code>
-  ), and add the following lines to it:
-</p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">MAGICK_HOME</span><span class="o">=</span><span class="s2">&quot;/usr/bin/imagemagick&quot;</span>
-</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$MAGICK_HOME</span>/bin:<span class="nv">$PATH</span>
-</span><span class='line'><span class="nb">export </span><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">&quot;$MAGICK_HOME/lib&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-<p>
-  <strong>
-    Note:
-  </strong>
-  If you moved your ImageMagick directory to a different spot in step 4, then the variable
-  <code>MAGICK_HOME</code>
-  will need to be assigned the proper value.
-</p>
-<p>
-  Restart Terminal and you should be set to jet with ImageMagick in Snow Leopard [=
-</p>
-]]></content>
-  </entry>
   
-</feed>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/03/05/serving-a-static-website-with-heroku/" title="Previous Post: Serving a static website with Heroku">&laquo; Serving a static website with Heroku</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jared McFarland -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <span class="credit">Theme by <a href="http://aron.cedercrantz.com/">Aron Cedercrantz</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jaredmcfarland';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jaredonline.github.com/blog/2012/05/16/sprockets-2-with-rails-2-dot-3/';
+        var disqus_url = 'http://jaredonline.github.com/blog/2012/05/16/sprockets-2-with-rails-2-dot-3/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
