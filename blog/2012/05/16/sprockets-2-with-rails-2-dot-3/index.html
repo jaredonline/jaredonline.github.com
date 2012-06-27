@@ -188,6 +188,24 @@
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># config/initializers/sprockets.rb</span>
 </span><span class='line'><span class="k">module</span> <span class="nn">Sprockets</span>
 </span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">env</span>
@@ -201,6 +219,24 @@
 </span><span class='line'>    <span class="no">Sprockets</span><span class="o">::</span><span class="no">Manifest</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;public&quot;</span><span class="p">,</span> <span class="s2">&quot;assets&quot;</span><span class="p">,</span> <span class="s2">&quot;manifest.json&quot;</span><span class="p">))</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># This controls whether or not to use &quot;debug&quot; mode with sprockets.  In debug mode,</span>
+</span><span class='line'><span class="c1"># asset tag helpers (like javascript_include_tag) will output the non-compiled</span>
+</span><span class='line'><span class="c1"># version of assets, instead of the compiled version.  For example, if you had</span>
+</span><span class='line'><span class="c1"># application.js as follows:</span>
+</span><span class='line'><span class="c1"># </span>
+</span><span class='line'><span class="c1"># = require jquery</span>
+</span><span class='line'><span class="c1"># = require event_bindings</span>
+</span><span class='line'><span class="c1"># </span>
+</span><span class='line'><span class="c1"># javascript_include_tag &quot;application&quot; would output:</span>
+</span><span class='line'><span class="c1"># &lt;script src=&quot;/assets/jquery.js?body=1&quot;&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c1"># &lt;script src=&quot;/assets/event_bindings.js?body=1&quot;&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c1"># </span>
+</span><span class='line'><span class="c1"># If debug mode were turned off, you&#39;d just get</span>
+</span><span class='line'><span class="c1"># &lt;script src=&quot;/assets/application.js&quot;&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="c1"># </span>
+</span><span class='line'><span class="c1"># Here we turn it on for all environments but Production</span>
+</span><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">action_view</span><span class="o">.</span><span class="n">debug_sprockets</span> <span class="o">=</span> <span class="kp">true</span> <span class="k">unless</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">production?</span>
 </span></code></pre></td></tr></table></div></figure>
 <p>
   Now I can refer to
@@ -326,71 +362,6 @@
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># helpers.rb</span>
 </span><span class='line'><span class="nb">require</span> <span class="s1">&#39;extensions/action_view/helpers/asset_tag_helper&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># asset_tag_helper.rb</span>
-</span><span class='line'><span class="c1"># Overwrite some Asset Tag Helpers to use Sprockets</span>
-</span><span class='line'><span class="k">module</span> <span class="nn">ActionView</span>
-</span><span class='line'>  <span class="k">module</span> <span class="nn">Helpers</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1"># Overwrite the javascript_path method to use the &#39;assets&#39; directory</span>
-</span><span class='line'>    <span class="c1"># instead of the default &#39;javascripts&#39; (Sprockets will figure it out)</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">javascript_path</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">compute_public_path</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s1">&#39;assets&#39;</span><span class="p">,</span> <span class="s1">&#39;js&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="n">alias_method</span> <span class="ss">:path_to_javascript</span><span class="p">,</span> <span class="ss">:javascript_path</span> <span class="c1"># aliased to avoid conflicts with a javascript_path named route</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1"># Overwrite the stylesheet_path method to use the &#39;assets&#39; directory</span>
-</span><span class='line'>    <span class="c1"># instead of the default &#39;stylesheets&#39; (Sprockets will figure it out)</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">stylesheet_path</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">compute_public_path</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s1">&#39;assets&#39;</span><span class="p">,</span> <span class="s1">&#39;css&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="n">alias_method</span> <span class="ss">:path_to_stylesheet</span><span class="p">,</span> <span class="ss">:stylesheet_path</span> <span class="c1"># aliased to avoid conflicts with a stylesheet_path named route</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kp">private</span>
-</span><span class='line'>    <span class="c1"># Check for a sprockets version of the asset, otherwise use the default rails behaviour.</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">rewrite_asset_path</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">manifest</span> <span class="o">=</span> <span class="no">Sprockets</span><span class="o">.</span><span class="n">manifest</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">if</span> <span class="n">manifest</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">has_key?</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">manifest</span><span class="o">.</span><span class="n">assets</span><span class="o">[</span><span class="n">source</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>        <span class="k">super</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 <p>
   Phew! Now that we&#8217;ve monkey patched the Rails
