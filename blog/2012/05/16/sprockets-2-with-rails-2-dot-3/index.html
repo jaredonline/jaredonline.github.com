@@ -9,7 +9,7 @@
   <meta name="author" content="Jared McFarland">
 
   
-  <meta name="description" content="At FutureAdvisor our main app is still in Rails 2.3, mainly because upgrading to Rails 3 is kind of a pain. I generally keep a few side projects &hellip;">
+  <meta name="description" content="Update 06/26/2012 I changed the asset_tag_helper.rb and config/initializers/sprockets.rb file to be more robust and to support a &#8220;debug mode&# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,6 +94,33 @@
 
 
 <div class="entry-content"><p>
+  <strong>Update 06/26/2012</strong>
+  I changed the
+  <code>asset_tag_helper.rb</code>
+  and
+  <code>config/initializers/sprockets.rb</code>
+  file to be more robust and to support a &#8220;debug mode&#8221;.
+</p>
+<p>
+  <em>Note:</em>
+  The sowftware I use to generate this blog (Jekyll) and the code syntax highlighter I&#8217;m  using
+  don&#8217;t support the
+  <code>#{}</code>
+  Ruby style string concatenation.  In
+  <strong>ALL</strong>
+  the examples below, I&#8217;ve changed instances of
+  <code>"#{string_one}#{string_two}"</code>
+  to
+  <code>string_one + string_two</code>
+  This will have a few side effects, as Ruby automatically calls
+  <code>#to_s</code>
+  on objects when using the
+  <code>#{}</code>
+  style concatenation, but not the
+  <code>+</code>
+  style.  If you run into issues, let me know.
+</p>
+<p>
   At
   <a href='http://www.futureadvisor.com'>FutureAdvisor</a>
   our main app is still in Rails 2.3, mainly because
