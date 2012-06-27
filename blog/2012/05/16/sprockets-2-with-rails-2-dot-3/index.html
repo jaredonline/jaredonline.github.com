@@ -233,17 +233,25 @@
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># config/initializers/sprockets.rb</span>
 </span><span class='line'><span class="k">module</span> <span class="nn">Sprockets</span>
 </span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">env</span>
-</span><span class='line'>    <span class="n">sprockets</span> <span class="o">=</span> <span class="no">Sprockets</span><span class="o">::</span><span class="no">Environment</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'>    <span class="n">sprockets</span><span class="o">.</span><span class="n">append_path</span> <span class="s1">&#39;app/assets/javascripts&#39;</span>
-</span><span class='line'>    <span class="n">sprockets</span><span class="o">.</span><span class="n">append_path</span> <span class="s1">&#39;app/assets/stylesheets&#39;</span>
-</span><span class='line'>    <span class="n">sprockets</span>
+</span><span class='line'>    <span class="vi">@env</span> <span class="o">||=</span> <span class="k">begin</span>
+</span><span class='line'>      <span class="n">sprockets</span> <span class="o">=</span> <span class="no">Sprockets</span><span class="o">::</span><span class="no">Environment</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>      <span class="n">sprockets</span><span class="o">.</span><span class="n">append_path</span> <span class="s1">&#39;app/assets/javascripts&#39;</span>
+</span><span class='line'>      <span class="n">sprockets</span><span class="o">.</span><span class="n">append_path</span> <span class="s1">&#39;app/assets/stylesheets&#39;</span>
+</span><span class='line'>      <span class="n">sprockets</span><span class="o">.</span><span class="n">css_compressor</span>  <span class="o">=</span> <span class="no">YUI</span><span class="o">::</span><span class="no">CssCompressor</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>      <span class="n">sprockets</span><span class="o">.</span><span class="n">js_compressor</span>   <span class="o">=</span> <span class="no">YUI</span><span class="o">::</span><span class="no">JavaScriptCompressor</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>      <span class="n">sprockets</span>
+</span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">manifest</span>
-</span><span class='line'>    <span class="no">Sprockets</span><span class="o">::</span><span class="no">Manifest</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;public&quot;</span><span class="p">,</span> <span class="s2">&quot;assets&quot;</span><span class="p">,</span> <span class="s2">&quot;manifest.json&quot;</span><span class="p">))</span>
+</span><span class='line'>    <span class="vi">@manifest</span> <span class="o">||=</span> <span class="no">Sprockets</span><span class="o">::</span><span class="no">Manifest</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;public&quot;</span><span class="p">,</span> <span class="s2">&quot;assets&quot;</span><span class="p">,</span> <span class="s2">&quot;manifest.json&quot;</span><span class="p">))</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
